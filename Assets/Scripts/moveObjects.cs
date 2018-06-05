@@ -11,7 +11,7 @@ public class moveObjects : MonoBehaviour {
     private float maxSpeed = 10;
 
     Rigidbody body;
-    float force = 800;
+    float force = 450;
 
 	// Use this for initialization
 	void Start () {
@@ -43,13 +43,13 @@ public class moveObjects : MonoBehaviour {
 
     void OnCollisionEnter(Collision col)
     {
-        // TODO not working
-        //Debug.Log("Collision");
-        Destroy(col.gameObject);
+        if (col.gameObject.tag == "myo_trigger")
+            Destroy(gameObject);
     }
 
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Collision");
+        if (other.gameObject.tag == "myo_trigger")
+            Destroy(gameObject);
     }
 }

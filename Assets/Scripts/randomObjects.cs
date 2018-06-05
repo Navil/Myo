@@ -10,7 +10,7 @@ public class randomObjects : MonoBehaviour {
     float spawnMinTime = 0.5f;
     float spawnMaxTime = 4.0f;
     int maxObjects = 50;
-    Vector3 spawnRange = new Vector3(0, 20, 0);
+    Vector3 spawnRange = new Vector3(0, 5, 0);
     bool isOnGoing = true;
     int countObjects = 0;
 
@@ -50,7 +50,7 @@ public class randomObjects : MonoBehaviour {
             Instantiate(objects[randomObject], spawnPosition + transform.TransformPoint(0, 0, 0), gameObject.transform.rotation);
 
             countObjects++;
-            //Debug.Log("Spawn Object! " + randomObject);
+            Debug.Log("Spawn Object! " + randomObject);
 
             yield return new WaitForSeconds(nextSpawnTime);
         }
