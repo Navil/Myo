@@ -11,24 +11,24 @@ public class moveObjects : MonoBehaviour {
     private float maxSpeed = 10;
 
     Rigidbody body;
-    float force = 800;
+    float force = 450;
 
 	// Use this for initialization
 	void Start () {
         speed = Random.Range(minSpeed, maxSpeed);
         initX = gameObject.transform.position.x;
 
-        body = GetComponent<Rigidbody>();
+        //body = GetComponent<Rigidbody>();
 
-        body.AddForce((transform.right + transform.up) * force);
+        //body.AddForce((transform.right + transform.up) * force);
 	}
 	
 	// Update is called once per frame
 	void Update ()
     {
-        /*transform.Translate(Vector3.right * speed * Time.deltaTime, Space.World);
+        transform.Translate(Vector3.right * speed * Time.deltaTime, Space.World);
 
-        if ((gameObject.transform.position.x - initX) >= maxDistanceX / 2 )
+        /*if ((gameObject.transform.position.x - initX) >= maxDistanceX / 2 )
         {
             transform.Translate(Vector3.down * Time.deltaTime);
         }*/
@@ -43,13 +43,13 @@ public class moveObjects : MonoBehaviour {
 
     void OnCollisionEnter(Collision col)
     {
-        // TODO not working
-        //Debug.Log("Collision");
-        Destroy(col.gameObject);
+        if (col.gameObject.tag == "myo_trigger")
+            Destroy(gameObject);
     }
 
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Collision");
+        if (other.gameObject.tag == "myo_trigger")
+            Destroy(gameObject);
     }
 }
