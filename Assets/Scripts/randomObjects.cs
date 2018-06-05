@@ -11,7 +11,7 @@ public class randomObjects : MonoBehaviour {
     float spawnMaxTime = 4.0f;
     int maxObjects = 50;
     //Vector3 spawnRange = new Vector3(0, 20, 0);
-    Vector3 spawnRange = new Vector3(-20, -5, 40);
+    Vector3 spawnRange = new Vector3(-20, 1.5f, 10);
     bool isOnGoing = true;
     int countObjects = 0;
 
