@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class moveObjects : MonoBehaviour {
+public class BallController : MonoBehaviour {
 
     private float initX;
     private float maxDistanceX = 50;
@@ -41,15 +41,21 @@ public class moveObjects : MonoBehaviour {
         }
 	}
 
-    void OnCollisionEnter(Collision col)
+    /*void OnCollisionEnter(Collision col)
     {
+        Debug.Log(col.gameObject.tag);
         if (col.gameObject.tag == "myo_trigger")
+        {
             Destroy(gameObject);
-    }
+        }
+    }*/
 
-    void OnTriggerEnter(Collider other)
+    void OnCollisionEnter(Collision collision)
     {
-        if (other.gameObject.tag == "myo_trigger")
+        Debug.Log("Hit!");
+        if (collision.gameObject.tag == "myo_trigger")
+        {
             Destroy(gameObject);
+        }
     }
 }

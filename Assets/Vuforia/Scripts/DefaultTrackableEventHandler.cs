@@ -84,7 +84,16 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
 
         // Enable rendering:
         foreach (var component in rendererComponents)
+        {
             component.enabled = true;
+            /*if (component.name == "Cube")
+            {
+                Vector3 newPos = new Vector3(component.transform.position.x, component.transform.position.y, 0);
+                //component.transform.position = newPos;
+                Debug.Log("Pos! " + newPos.ToString());
+            */
+        }
+        
 
         // Enable colliders:
         foreach (var component in colliderComponents)

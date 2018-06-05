@@ -1,20 +1,20 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
-public class randomObjects : MonoBehaviour {
+public class GenerateRandomObjects : MonoBehaviour {
 
     public GameObject[] objects;
+    public int scale = 1;
 
     int startTime = 0;
     float spawnMinTime = 0.5f;
-    float spawnMaxTime = 4.0f;
+    float spawnMaxTime = 2.0f;
     int maxObjects = 50;
-    Vector3 spawnRange = new Vector3(0, 0, 0);
-    //Vector3 spawnRange = new Vector3(-20, 1.5f, 10);
+    Vector3 spawnRange = new Vector3(0, 5, 0);
     bool isOnGoing = true;
     int countObjects = 0;
-
 
     float nextSpawnTime;
 
@@ -37,6 +37,9 @@ public class randomObjects : MonoBehaviour {
         }
 
         nextSpawnTime = Random.Range(spawnMinTime, spawnMaxTime);
+
+        //countText.text = "Count: " + countObjects.ToString();
+
 	}
 
     IEnumerator Spawner ()
@@ -46,8 +49,7 @@ public class randomObjects : MonoBehaviour {
         while (isOnGoing)
         {
             int randomObject = Random.Range(0, objects.Length);
-            Vector3 spawnPosition = new Vector3(spawnRange.x, spawnRange.y, spawnRange.z);
-//Vector3 spawnPosition = new Vector3(spawnRange.x, //Random.Range(0, spawnRange.y), spawnRange.z);
+            Vector3 spawnPosition = new Vector3(spawnRange.x, Random.Range(0, spawnRange.y), spawnRange.z);
 
             Instantiate(objects[randomObject], spawnPosition + transform.TransformPoint(0, 0, 0), gameObject.transform.rotation);
 
