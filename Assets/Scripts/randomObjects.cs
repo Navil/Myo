@@ -8,7 +8,7 @@ public class randomObjects : MonoBehaviour {
 
     int startTime = 0;
     float spawnMinTime = 0.5f;
-    float spawnMaxTime = 4.0f;
+    float spawnMaxTime = 2.0f;
     int maxObjects = 50;
     Vector3 spawnRange = new Vector3(0, 5, 0);
     bool isOnGoing = true;
