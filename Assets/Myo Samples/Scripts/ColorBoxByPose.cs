@@ -14,11 +14,6 @@ public class ColorBoxByPose : MonoBehaviour
     // This object must have a ThalmicMyo script attached.
     public GameObject myo = null;
 
-    // Materials to change to when poses are made.
-    public Material waveInMaterial;
-    public Material waveOutMaterial;
-    public Material doubleTapMaterial;
-
     // The pose from the last update. This is used to determine if the pose has changed
     // so that actions are only performed upon making them rather than every frame during
     // which they are active.
@@ -38,26 +33,6 @@ public class ColorBoxByPose : MonoBehaviour
         if (thalmicMyo.pose != _lastPose) {
             _lastPose = thalmicMyo.pose;
 
-            // Vibrate the Myo armband when a fist is made.
-            if (thalmicMyo.pose == Pose.Fist) {
-                thalmicMyo.Vibrate (VibrationType.Medium);
-
-                ExtendUnlockAndNotifyUserAction (thalmicMyo);
-
-            // Change material when wave in, wave out or double tap poses are made.
-            } else if (thalmicMyo.pose == Pose.WaveIn) {
-                GetComponent<Renderer>().material = waveInMaterial;
-
-                ExtendUnlockAndNotifyUserAction (thalmicMyo);
-            } else if (thalmicMyo.pose == Pose.WaveOut) {
-                GetComponent<Renderer>().material = waveOutMaterial;
-
-                ExtendUnlockAndNotifyUserAction (thalmicMyo);
-            } else if (thalmicMyo.pose == Pose.DoubleTap) {
-                GetComponent<Renderer>().material = doubleTapMaterial;
-
-                ExtendUnlockAndNotifyUserAction (thalmicMyo);
-            }
         }
     }
 
