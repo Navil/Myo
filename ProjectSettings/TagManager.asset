@@ -3,7 +3,10 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - blue_trigger
+  - green_trigger
+  - red_trigger
   layers:
   - Default
   - TransparentFX
