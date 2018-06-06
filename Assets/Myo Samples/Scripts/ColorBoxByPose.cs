@@ -14,6 +14,10 @@ public class ColorBoxByPose : MonoBehaviour
     // This object must have a ThalmicMyo script attached.
     public GameObject myo = null;
 
+    // Materials to change to when poses are made.
+    public Material waveInMaterial;
+    public Material waveOutMaterial;
+
     // The pose from the last update. This is used to determine if the pose has changed
     // so that actions are only performed upon making them rather than every frame during
     // which they are active.
@@ -32,6 +36,13 @@ public class ColorBoxByPose : MonoBehaviour
         // is not on a user's arm, pose will be set to Pose.Unknown.
         if (thalmicMyo.pose != _lastPose) {
             _lastPose = thalmicMyo.pose;
+
+            // Change the material on wave in or wave out
+            if (thalmicMyo.pose == Pose.WaveIn) {
+                GetComponent<Renderer>().material = waveInMaterial;
+            } else if (thalmicMyo.pose == Pose.WaveOut) {
+                GetComponent<Renderer>().material = waveOutMaterial;
+            }
 
         }
     }
