@@ -18,7 +18,7 @@ public class ColorBoxByPose : MonoBehaviour
     public Material waveInMaterial;
     public Material waveOutMaterial;
 
-    public string myoState = "BLUE";
+    private string myoState = "BLUE";
 
     // The pose from the last update. This is used to determine if the pose has changed
     // so that actions are only performed upon making them rather than every frame during
@@ -50,7 +50,10 @@ public class ColorBoxByPose : MonoBehaviour
 
             // TODO RED
 
+
+            
         }
+        Debug.Log(myoState);
     }
 
     public string GetMyoState()
