@@ -32,26 +32,16 @@ public class GenerateRandomObjects : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        /*if (countObjects <= maxObjects)
-        {
-            isOnGoing = true;
-        } else
-        {
-            isOnGoing = false;
-        }*/
-
         nextSpawnTime = Random.Range(spawnMinTime, spawnMaxTime);
-
-        //countText.text = "Count: " + countObjects.ToString();
-
+        
         UpdateScoreText scoreKeeper = GameObject.FindObjectOfType<UpdateScoreText>();
         currentScore = scoreKeeper.GetScore();
 
         // 1 ball 1 farbe
         if (currentScore <= 10)
         {
-            objectsOnce = 3;
-            objectsDiff = 3;
+            objectsOnce = 1;
+            objectsDiff = 1;
         }
         // 1 ball 2 moegliche farben usw
         else if (currentScore <= 20)
