@@ -7,24 +7,24 @@ public class BallController : MonoBehaviour {
     private float initX;
     private float maxDistanceX = 50;
     private float speed;
-    private float minSpeed = 5;
-    private float maxSpeed = 10;
+    private float minSpeed = 20;
+    private float maxSpeed = 50;
 
     string ballColor;
 
     Rigidbody body;
-    float force = 250;
+    //float force = 250;
 
     Vector3 startPos, targetPos;
-    float arcMin = 1;
-    float arcMax = 4;
+    float arcMin = 10;
+    float arcMax = 30;
     float arcHeight;
 
 	// Use this for initialization
 	void Start () {
 
         startPos = transform.position;
-        targetPos = new Vector3(startPos.x + 30, transform.position.y, transform.position.z);
+        targetPos = new Vector3(startPos.x + 150, transform.position.y, transform.position.z);
 
         speed = Random.Range(minSpeed, maxSpeed);
         arcHeight = Random.Range(arcMin, arcMax);

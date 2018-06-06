@@ -45,8 +45,10 @@ public class ColorBoxByPose : MonoBehaviour
                 myoState = "BLUE";
             } else if (thalmicMyo.pose == Pose.WaveOut) {
                 GetComponent<Renderer>().material = waveOutMaterial;
-                myoState = "RED";
+                myoState = "GREEN";
             }
+
+            // TODO RED
 
         }
     }

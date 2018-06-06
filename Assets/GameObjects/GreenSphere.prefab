@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 135015637574485442}
   - component: {fileID: 114988439253923140}
   - component: {fileID: 54423567220415612}
+  - component: {fileID: 65156074343349942}
   m_Layer: 0
   m_Name: GreenSphere
   m_TagString: green_trigger
@@ -39,7 +40,7 @@ Transform:
   m_GameObject: {fileID: 1112006115914002}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -101,6 +102,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &65156074343349942
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1112006115914002}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 200}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &114988439253923140
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -120,7 +133,7 @@ SphereCollider:
   m_GameObject: {fileID: 1112006115914002}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
