@@ -6,17 +6,21 @@ using UnityEngine;
 public class GenerateRandomObjects : MonoBehaviour {
 
     public GameObject[] objects;
-    public int scale = 1;
+    //public int scale = 1;
+    //public Text textScore;
 
     int startTime = 0;
-    float spawnMinTime = 0.5f;
-    float spawnMaxTime = 2.0f;
+    float spawnMinTime = 2.0f;
+    float spawnMaxTime = 5.0f;
     int maxObjects = 50;
     Vector3 spawnRange = new Vector3(0, 5, 0);
     bool isOnGoing = true;
-    int countObjects = 0;
+    //int countObjects = 0;
 
     float nextSpawnTime;
+    int currentScore;
+    int objectsOnce = 1;
+    int objectsDiff = 1;
 
 	// Use this for initialization
 	void Start ()
@@ -28,17 +32,57 @@ public class GenerateRandomObjects : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        if (countObjects <= maxObjects)
+        /*if (countObjects <= maxObjects)
         {
             isOnGoing = true;
         } else
         {
             isOnGoing = false;
-        }
+        }*/
 
         nextSpawnTime = Random.Range(spawnMinTime, spawnMaxTime);
 
         //countText.text = "Count: " + countObjects.ToString();
+
+        UpdateScoreText scoreKeeper = GameObject.FindObjectOfType<UpdateScoreText>();
+        currentScore = scoreKeeper.GetScore();
+
+        // 1 ball 1 farbe
+        if (currentScore <= 10)
+        {
+            objectsOnce = 1;
+            objectsDiff = 1;
+        }
+        // 1 ball 2 moegliche farben usw
+        else if (currentScore <= 20)
+        {
+            objectsOnce = 1;
+            objectsDiff = 2;
+        }
+        else if (currentScore <= 30)
+        {
+            objectsOnce = 2;
+            objectsDiff = 2;
+        }
+        else if (currentScore <= 40)
+        {
+            objectsOnce = 3;
+            objectsDiff = 2;
+        }
+        else if (currentScore <= 50)
+        {
+            objectsOnce = 3;
+            objectsDiff = 3;
+        }
+        else
+        {
+            objectsOnce = 5;
+            objectsDiff = 3;
+        }
+
+        //if (objectsDiff >= objects.Length) objectsDiff = objects.Length - 1;
+
+        //Debug.Log("Score: " + currentScore);
 
 	}
 
@@ -48,15 +92,23 @@ public class GenerateRandomObjects : MonoBehaviour {
 
         while (isOnGoing)
         {
-            int randomObject = Random.Range(0, objects.Length);
-            Vector3 spawnPosition = new Vector3(spawnRange.x, Random.Range(0, spawnRange.y), spawnRange.z);
+            
+            for (int i = 0; i < objectsOnce; i++)
+            {
+                int randomObject = Random.Range(0, objectsDiff);
+                Vector3 spawnPosition = new Vector3(spawnRange.x, Random.Range(0, spawnRange.y), spawnRange.z);
 
-            Instantiate(objects[randomObject], spawnPosition + transform.TransformPoint(0, 0, 0), gameObject.transform.rotation);
+                //Debug.Log("randomObject: " + randomObject);
 
-            countObjects++;
+                Instantiate(objects[randomObject], spawnPosition + transform.TransformPoint(0, 0, 0), gameObject.transform.rotation);
+            }
+           
+
+            //countObjects++;
             //Debug.Log("Spawn Object! " + randomObject);
 
             yield return new WaitForSeconds(nextSpawnTime);
         }
     }
+
 }

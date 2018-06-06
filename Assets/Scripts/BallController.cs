@@ -10,6 +10,8 @@ public class BallController : MonoBehaviour {
     private float minSpeed = 1;
     private float maxSpeed = 10;
 
+    string ballColor;
+
     Rigidbody body;
     float force = 450;
 
@@ -17,6 +19,15 @@ public class BallController : MonoBehaviour {
 	void Start () {
         speed = Random.Range(minSpeed, maxSpeed);
         initX = gameObject.transform.position.x;
+
+        //Debug.Log("name!: " + gameObject.name.ToString());
+
+        if (gameObject.name.Contains("Blue"))
+            ballColor = "BLUE";
+        else if (gameObject.name.Contains("Green"))
+            ballColor = "GREEN";
+        else if (gameObject.name.Contains("Red"))
+            ballColor = "RED";
 
         //body = GetComponent<Rigidbody>();
 
@@ -50,12 +61,23 @@ public class BallController : MonoBehaviour {
         }
     }*/
 
-    void OnCollisionEnter(Collision collision)
+    void OnTriggerEnter(Collider collision)
     {
-        Debug.Log("Hit!");
+        //Debug.Log("Hit!");
         if (collision.gameObject.tag == "myo_trigger")
         {
-            Destroy(gameObject);
+            ColorBoxByPose color = GameObject.FindObjectOfType<ColorBoxByPose>();
+            string state = color.GetMyoState();
+
+            //Debug.Log("HIT!: " + state + " - " + ballColor);
+
+            if(state.Equals(ballColor))
+            {
+                Debug.Log("HIT!");
+                UpdateScoreText scoreKeeper = GameObject.FindObjectOfType<UpdateScoreText>();
+                scoreKeeper.IncrementScore();
+                Destroy(gameObject);
+            }
         }
     }
 }

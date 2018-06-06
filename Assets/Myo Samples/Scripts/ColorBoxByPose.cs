@@ -18,6 +18,8 @@ public class ColorBoxByPose : MonoBehaviour
     public Material waveInMaterial;
     public Material waveOutMaterial;
 
+    public string myoState = "BLUE";
+
     // The pose from the last update. This is used to determine if the pose has changed
     // so that actions are only performed upon making them rather than every frame during
     // which they are active.
@@ -40,11 +42,18 @@ public class ColorBoxByPose : MonoBehaviour
             // Change the material on wave in or wave out
             if (thalmicMyo.pose == Pose.WaveIn) {
                 GetComponent<Renderer>().material = waveInMaterial;
+                myoState = "BLUE";
             } else if (thalmicMyo.pose == Pose.WaveOut) {
                 GetComponent<Renderer>().material = waveOutMaterial;
+                myoState = "RED";
             }
 
         }
+    }
+
+    public string GetMyoState()
+    {
+        return myoState;
     }
 
     // Extend the unlock if ThalmcHub's locking policy is standard, and notifies the given myo that a user action was
