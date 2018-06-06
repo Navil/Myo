@@ -7,17 +7,27 @@ public class BallController : MonoBehaviour {
     private float initX;
     private float maxDistanceX = 50;
     private float speed;
-    private float minSpeed = 1;
+    private float minSpeed = 5;
     private float maxSpeed = 10;
 
     string ballColor;
 
     Rigidbody body;
-    float force = 450;
+    float force = 250;
+
+    Vector3 startPos, targetPos;
+    float arcMin = 1;
+    float arcMax = 4;
+    float arcHeight;
 
 	// Use this for initialization
 	void Start () {
+
+        startPos = transform.position;
+        targetPos = new Vector3(startPos.x + 30, transform.position.y, transform.position.z);
+
         speed = Random.Range(minSpeed, maxSpeed);
+        arcHeight = Random.Range(arcMin, arcMax);
         initX = gameObject.transform.position.x;
 
         //Debug.Log("name!: " + gameObject.name.ToString());
@@ -29,7 +39,7 @@ public class BallController : MonoBehaviour {
         else if (gameObject.name.Contains("Red"))
             ballColor = "RED";
 
-        //body = GetComponent<Rigidbody>();
+        body = GetComponent<Rigidbody>();
 
         //body.AddForce((transform.right + transform.up) * force);
 	}
@@ -37,7 +47,22 @@ public class BallController : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        transform.Translate(Vector3.right * speed * Time.deltaTime, Space.World);
+        // http://luminaryapps.com/blog/arcing-projectiles-in-unity/
+        // Compute the next position, with arc added in
+        float x0 = startPos.x;
+        float x1 = targetPos.x;
+        float dist = x1 - x0;
+        float nextX = Mathf.MoveTowards(transform.position.x, x1, speed * Time.deltaTime);
+        float baseY = Mathf.Lerp(startPos.y, targetPos.y, (nextX - x0) / dist);
+        float arc = arcHeight * (nextX - x0) * (nextX - x1) / (-0.25f * dist * dist);
+        Vector3 nextPos = new Vector3(nextX, baseY + arc, transform.position.z);
+
+        transform.position = nextPos;
+
+        if (nextPos == targetPos) Destroy(gameObject);
+
+
+        //transform.Translate(Vector3.right * speed * Time.deltaTime, Space.World);
 
         /*if ((gameObject.transform.position.x - initX) >= maxDistanceX / 2 )
         {
@@ -46,10 +71,10 @@ public class BallController : MonoBehaviour {
 
 
         //if (gameObject.transform.position.x >= (initX + maxDistanceX))
-        if (gameObject.transform.position.y <= -10)
+        /*if (gameObject.transform.position.y <= -10)
         {
             Destroy(gameObject);
-        }
+        }*/
 	}
 
     /*void OnCollisionEnter(Collision col)
