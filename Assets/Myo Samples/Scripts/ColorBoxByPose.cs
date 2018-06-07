@@ -17,6 +17,7 @@ public class ColorBoxByPose : MonoBehaviour
     // Materials to change to when poses are made.
     public Material waveInMaterial;
     public Material waveOutMaterial;
+    public Material spreadMaterial;
 
     private string myoState = "BLUE";
 
@@ -46,9 +47,10 @@ public class ColorBoxByPose : MonoBehaviour
             } else if (thalmicMyo.pose == Pose.WaveOut) {
                 GetComponent<Renderer>().material = waveOutMaterial;
                 myoState = "GREEN";
+            } else if (thalmicMyo.pose == Pose.FingersSpread) {
+                GetComponent<Renderer>().material = spreadMaterial;
+                myoState = "RED";
             }
-
-            // TODO RED
 
 
             
