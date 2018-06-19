@@ -38,28 +38,28 @@ public class GenerateRandomObjects : MonoBehaviour {
         currentScore = scoreKeeper.GetScore();
 
         // 1 ball 1 farbe
-        if (currentScore <= 10)
+        if (currentScore <= 5)
         {
             objectsOnce = 1;
             objectsDiff = 1;
         }
         // 1 ball 2 moegliche farben usw
-        else if (currentScore <= 20)
+        else if (currentScore <= 10)
         {
             objectsOnce = 1;
             objectsDiff = 2;
         }
-        else if (currentScore <= 30)
+        else if (currentScore <= 15)
         {
             objectsOnce = 2;
             objectsDiff = 2;
         }
-        else if (currentScore <= 40)
+        else if (currentScore <= 20)
         {
             objectsOnce = 3;
             objectsDiff = 2;
         }
-        else if (currentScore <= 50)
+        else if (currentScore <= 25)
         {
             objectsOnce = 3;
             objectsDiff = 3;
